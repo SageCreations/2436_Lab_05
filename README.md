@@ -1,1 +1,3 @@
 # 2436_Lab_05
+
+Chapter 17 has a rather lengthy section that presents a typical use of the queue data type. It is a simulation of customer be serviced from a waiting line. The book, and the code that I have attached to this lab, use the QueueAsArray to implement the waiting line. Please refactor this simulation code to use the STL's queue implementation rather than the QueueAsArray implementation. Please ensure that you run the code before converting it and then after converting to ensure that your refactoring worked correctly ( ie. produces the same results when the same parameters are given. The starter code ( using QueueAsArray is called SimulatorUsingQueueAsArray.zip )
