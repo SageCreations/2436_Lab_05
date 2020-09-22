@@ -1,29 +1,28 @@
 #include "waitingCustomerQueue.h"
 
-
-waitingCustomerQueueType::waitingCustomerQueueType(int size)
-                          :queueType<customerType>(size)
+waitingCustomerQueueType::waitingCustomerQueueType()
 {
 }
 
 void waitingCustomerQueueType::updateWaitingQueue()
 {
+    std::queue<customerType> que;
     customerType cust;
-
+    
     cust.setWaitingTime(-1);  
     int wTime = 0;
-	
-	addQueue(cust);
+
+	que.push(cust);
 
     while (wTime != -1)
     {
-        cust = front();
-        deleteQueue();
+        cust = que.front();
+        que.pop();
 
         wTime = cust.getWaitingTime();
         if (wTime == -1)
             break;
         cust.incrementWaitingTime();
-        addQueue(cust);
+        que.push(cust);
 	}
 }
