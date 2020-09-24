@@ -3,15 +3,14 @@
 #include <iomanip>
 #include <iostream>
 
-#include <queue>
-//#include "queueAsArray.h"
+#include "queueAsArray.h"
 #include "serverList.h"
 #include "waitingCustomerQueue.h"
 
 using namespace std;
 
 void setSimulationParameters(int& sTime, int& numOfServers, int& transTime,
-                             int& tBetweenCArrival); 
+                             int& tBetweenCArrival);
 
 bool isCustomerArrived(double arvTimeDiff);
 
@@ -20,9 +19,9 @@ void generateStatistics(serverListType& serverList,
                         int waitTimeServedCustomers);
 
 void runSimulation();
- 
-int main() {  
-    runSimulation(); 
+
+int main() {
+    runSimulation();
 
     return 0;
 }
@@ -78,26 +77,26 @@ void runSimulation() {
     for (clock = 1; clock <= simulationTime; clock++) {
         serverList.updateServers(cout);
 
-        if (!customerQueue.empty()) customerQueue.updateWaitingQueue();
+        if (!customerQueue.isEmptyQueue()) customerQueue.updateWaitingQueue();
 
         if (isCustomerArrived(timeBetweenCustomerArrival)) {
             custNumber++;
             customer.setCustomerInfo(custNumber, clock, 0, transactionTime);
 
-            customerQueue.emplace(customer);
- 
+            customerQueue.addQueue(customer);
+
             cout << "Customer number " << custNumber << " arrived at time unit "
                  << clock << endl;
         }
 
         serverID = serverList.getFreeServerID();
-        if (serverID != -1 && !customerQueue.empty()) {
+        if (serverID != -1 && !customerQueue.isEmptyQueue()) {
             customer = customerQueue.front();
-            customerQueue.pop();
+            customerQueue.deleteQueue();
             totalWaitTimeServedCustomers =
                 totalWaitTimeServedCustomers + customer.getWaitingTime();
             serverList.setServerBusy(serverID, customer);
-        } 
+        }
     }
 
     cout << endl;
@@ -122,9 +121,9 @@ void generateStatistics(serverListType& serverList,
 
     customerType customer;
 
-    while (!CQueue.empty()) {
+    while (!CQueue.isEmptyQueue()) {
         customer = CQueue.front();
-        CQueue.pop();
+        CQueue.deleteQueue();
         totalWaitTime = totalWaitTime + customer.getWaitingTime();
         customersLeftInQueue++;
     }
