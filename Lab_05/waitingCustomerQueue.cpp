@@ -2,7 +2,7 @@
 
 
 waitingCustomerQueueType::waitingCustomerQueueType(int size)
-                          :queueType<customerType>(size)
+                          :queueTypeX<customerType>(size)
 {
 }
 

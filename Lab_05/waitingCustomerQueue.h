@@ -2,9 +2,9 @@
 #define H_WaitingCustomerQueue
 
 #include "customer.h"
-#include "queueAsArray.h"
+#include "queueTypeX.h"
 
-class waitingCustomerQueueType : public queueType<customerType> {
+class waitingCustomerQueueType : public queueTypeX<customerType> {
    public:
     waitingCustomerQueueType(int size = 100);
     // Constructor

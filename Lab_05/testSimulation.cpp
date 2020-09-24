@@ -1,11 +1,11 @@
 #include <cmath>
-#include <cstdlib>
+#include <cstdlib>             
 #include <iomanip>
 #include <iostream>
 
-#include "queueAsArray.h"
+#include "queueTypeX.h"
 #include "serverList.h"
-#include "waitingCustomerQueue.h"
+#include "waitingCustomerQueue.h"   
 
 using namespace std;
 
